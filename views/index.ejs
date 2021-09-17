@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<h1><%= title %></h1>
+<ul class="list-group">
+    <% users.forEach(function(user) { %>
+        <li class="list-group-item">
+            <span><%= user.displayName %> (<%= user.email %>)</span>
+
+            <% if (user.customClaims.admin === true) { %>
+                <span class="pe-2"> - Admin </span>
+                <button class="btn btn-primary" onclick="makeUser(<%= JSON.stringify(user) %>)">Make User</button>
+            <% } else { %>
+                <span class="pe-2"> - User </span>
+                <button class="btn btn-success" onclick="makeAdmin(<%= JSON.stringify(user) %>)">Make Admin</button>
+            <% } %>
+        </li>
+    <% }); %>
+</ul>
+</body>
+<script>
+  async function makeAdmin(user) {
+    console.log(`Making user ${user.email} admin...`);
+    await fetch(`/user/${user.uid}/admin`, {method: "PATCH"});
+
+    window.location = "/";
+  }
+
+  async function makeUser(user) {
+    console.log(`Making user ${user.email} regular user...`);
+    await fetch(`/user/${user.uid}/user`, {method: "PATCH"});
+
+    window.location = "/";
+  }
+</script>
+</html>
