@@ -15,7 +15,3 @@ networks:
   prod:
     external: true
     name: ${TRAEFIK_NETWORK}
-
-volumes:
-  db-volume:
-  uploads-volume:
