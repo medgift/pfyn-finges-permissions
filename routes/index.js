@@ -13,7 +13,6 @@ admin.initializeApp({
 /* GET home page. */
 router.get("/", async function (req, res, next) {
   let { users } = await admin.auth().listUsers();
-  console.log("users", users);
 
   res.render("index", {
     title: "Pfyn-Finges Permissions Manager",
