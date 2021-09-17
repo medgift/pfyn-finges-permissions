@@ -6,3 +6,4 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=4000
+      - BASIC_AUTH_PASS=$BASIC_AUTH_PASS
