@@ -19,7 +19,7 @@
         <li class="list-group-item">
             <span><%= user.displayName %> (<%= user.email %>)</span>
 
-            <% if (user.customClaims.admin === true) { %>
+            <% if (user.customClaims && user.customClaims.admin === true) { %>
                 <span class="pe-2"> - Admin </span>
                 <button class="btn btn-primary" onclick="makeUser(<%= JSON.stringify(user) %>)">Make User</button>
             <% } else { %>

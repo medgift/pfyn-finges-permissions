@@ -7,7 +7,6 @@ const serviceAccount = require("../serviceAccountKey.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  //databaseURL: "https://pfyn-finges-nature-park-default-rtdb.europe-west1.firebasedatabase.app"
 });
 
 /* GET home page. */
