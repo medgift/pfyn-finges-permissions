@@ -14,18 +14,11 @@
 </head>
 <body>
 <h1><%= title %></h1>
-<ul class="list-group">
-    <% users.forEach(function(user) { %>
+<h3>Select your group</h3>
+<ul class="list-group list-group-horizontal">
+    <% groups.forEach(function(group) { %>
         <li class="list-group-item">
-            <span><%= user.displayName %> (<%= user.email %>)</span>
-
-            <% if (user.customClaims && user.customClaims.admin === true) { %>
-                <span class="pe-2"> - Admin </span>
-                <button class="btn btn-primary" onclick="makeUser(<%= JSON.stringify(user) %>)">Make User</button>
-            <% } else { %>
-                <span class="pe-2"> - User </span>
-                <button class="btn btn-success" onclick="makeAdmin(<%= JSON.stringify(user) %>)">Make Admin</button>
-            <% } %>
+            <a href=<%=`/users/${group}` %>><%= group %></a>
         </li>
     <% }); %>
 </ul>
